@@ -29,6 +29,8 @@ public class ProductRepositoryTests {
 		countTotalProducts = 25L;
 	}
 	
+	//teste ok
+	
 	@Test
 	public void saveShouldPersistWithAutoincrementWhenIdIsNull() {
 
