@@ -1,3 +1,32 @@
-.btn-icon {
-    height: 50px;
+.btn-container {
+  display: flex;
+}
+
+.btn-container button {
+  border-radius: 10px 0 0 10px;
+}
+
+.btn h6 {
+  color: #fff;
+  font-size: 12px;
+}
+
+.btn-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  background-color: #33569b;
+  border-radius: 0px 10px 10px 0px;
+}
+
+@media (min-width: 576px) {
+  .btn-icon-container {
+    height: 70px;
+    width: 70px;
+  }
+  .btn h6 {
+    font-size: 18px;
+  }
 }
