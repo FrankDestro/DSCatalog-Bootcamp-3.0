@@ -1,5 +1,10 @@
 .product-card {
     margin-bottom: 30px;
+    
+}
+
+.product-card:hover {
+   border: 2px solid #407bff;
 }
 
 .card-top-container {
@@ -23,3 +28,4 @@
     color: #263238;
 
 }
+
