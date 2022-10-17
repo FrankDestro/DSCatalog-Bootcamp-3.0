@@ -1,9 +1,10 @@
 .product-card {
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .product-card:hover {
-  border: 2px solid #407bff;
+  transform: scale(0.9);
 }
 
 .card-top-container {

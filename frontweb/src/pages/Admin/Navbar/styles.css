@@ -27,10 +27,25 @@ ul {
 
 .admin-nav-item.active {
   background: rgba(64, 123, 255, 0.3);
-  color: #407BFF;
-  
+  color: #407bff;
 }
 
 .admin-nav-item p {
   margin-bottom: 0;
+}
+
+@media (min-width: 1200px) {
+  ul {
+    justify-content: unset;
+    flex-direction: column;
+  }
+
+  .admin-nav-container {
+    padding: 0px;
+    width: 300px;
+    height: calc(100vh - 70px);
+  }
+  .admin-nav-item {
+    border-radius: 0;
+  }
 }
