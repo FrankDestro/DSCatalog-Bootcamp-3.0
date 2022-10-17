@@ -9,9 +9,12 @@ import { BASE_URL } from 'util/request';
 import axios from 'axios';
 
 import './styles.css';
+import CardLoader from './CardLoader';
+import CircleLoad from './CircleLoader/load';
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const params: AxiosParams = {
@@ -23,9 +26,14 @@ const Catalog = () => {
       },
     };
 
-    axios(params).then((response) => {
-      setPage(response.data);
-    });
+    setIsLoading(true);
+    axios(params)
+      .then((response) => {
+        setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -35,19 +43,19 @@ const Catalog = () => {
       </div>
 
       <div className="row">
-        {page?.content.map((product) => (
+        {isLoading ? <CircleLoad />: (
+          page?.content.map((product) => (
           <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
             <Link to="/products/1">
               <ProductCard product={product} />
             </Link>
           </div>
-        ))}
-
+        )))}
       </div>
-
       <div className="row">
         <Pagination />
       </div>
+     
     </div>
   );
 };
