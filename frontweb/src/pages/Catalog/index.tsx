@@ -9,7 +9,6 @@ import { BASE_URL } from 'util/request';
 import axios from 'axios';
 
 import './styles.css';
-import CardLoader from './CardLoader';
 import CircleLoad from './CircleLoader/load';
 
 const Catalog = () => {
