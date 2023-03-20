@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
 import { getAuthData, requestBackendLogin, saveAuthData } from 'util/request';
-import './styles.css';
 import { useState } from 'react';
+
+import './styles.css';
 
 type FormData = {
   username : string;
@@ -50,6 +51,7 @@ const Login = () => {
                 value : /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: 'Email inválido'
             }
+            
            })}
             type="text"
             className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
@@ -71,8 +73,9 @@ const Login = () => {
             name="password"
           />
           <label>Password</label>
-          <div  className="invalid-feedback d-block">{errors.password?.message}</div>
+          <div className="invalid-feedback d-block">{errors.password?.message}</div>
         </div>
+        
         <Link to="/admin/auth/recover" className="login-link-recover"> Esqueci a senha </Link>
         <div className="login-submit">
           <ButtonIcon text="Fazer login" />

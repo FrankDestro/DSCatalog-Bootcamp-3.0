@@ -1,5 +1,6 @@
 import { ReactComponent as MainImage } from 'assets/img/main-image.svg';
 import ButtonIcon from 'components/ButtonIcon';
+import BasicExample from 'components/dropdown';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
@@ -10,6 +11,7 @@ const Home = () => {
         <div className="home-content-container">
           <div>
             <h1>Conheça o melhor catálogo de produtos </h1>
+          <BasicExample></BasicExample>
             <p>
               Ajudaremos você a encontrar os melhores produtos disponíveis no
               mercado.
