@@ -1,7 +1,12 @@
-import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from 'components/PrivateRoute';
+import { Switch } from 'react-router-dom';
 import Navbar from './Navbar';
+import Users from './User';
 
 import './styles.css';
+
+/* As rotas admin elas irão utilizar o privateRoute para barrar o acesso caso usúario não esteja logado.
+Para rotas sem restrição você utiliza o Route normal, para rotas protegidas você utiliza o PrivateRoute. */
 
 const Admin = () => {
   return (
@@ -9,15 +14,15 @@ const Admin = () => {
       <Navbar />
       <div className="admin-content">
         <Switch>
-          <Route path="/admin/products">
+          <PrivateRoute path="/admin/products">
             <h1> Product CRUD </h1>
-          </Route>
-          <Route path="/admin/categories">
+          </PrivateRoute>
+          <PrivateRoute path="/admin/categories">
             <h1> Category CRUD </h1>
-          </Route>
-          <Route path="/admin/users">
-            <h1> User CRUD </h1>
-          </Route>
+          </PrivateRoute>
+          <PrivateRoute path="/admin/users">
+            <Users />
+          </PrivateRoute>
         </Switch>
       </div>
     </div>

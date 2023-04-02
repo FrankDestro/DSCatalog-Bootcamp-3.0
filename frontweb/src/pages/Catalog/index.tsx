@@ -1,14 +1,14 @@
+import { AxiosRequestConfig } from 'axios';
 import Pagination from 'components/Pagination';
 import ProductCard from 'components/ProductCard';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
-import { BASE_URL } from 'util/request';
-import axios, { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/request';
 
-import './styles.css';
 import CircleLoad from './CircleLoader/load';
+import './styles.css';
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
@@ -18,7 +18,6 @@ const Catalog = () => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: `/products`,
-      baseURL : BASE_URL,
       params: {
         page: 0,
         size: 12,
@@ -26,7 +25,7 @@ const Catalog = () => {
     };
 
     setIsLoading(true);
-    axios(params)
+    requestBackend(params)
       .then((response) => {
         setPage(response.data);
       })
