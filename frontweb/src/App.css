@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -10,8 +10,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
   margin-bottom: 0;
+  font-weight: 700;
 }
 
 a,
@@ -27,13 +27,13 @@ a:hover {
 }
 
 .base-input {
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 1em;
   letter-spacing: -0.015em;
   color: #263238;
   height: 50px;
 }
-
+ 
 .base-input::placeholder {
-  color: #9e9e9e;
+  color: #9E9E9E;
 }

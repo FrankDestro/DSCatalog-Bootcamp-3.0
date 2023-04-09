@@ -5,9 +5,10 @@ type Props = {
     price: number;
 }
 
-const ProductPrice = ({price} : Props) => {
+const ProductPrice = ( { price } : Props) => {
+
     return (
-        <div className='product-price-container'>
+        <div className="product-price-container">
             <span>R$</span>
             <h3>{formatPrice(price)}</h3>
         </div>

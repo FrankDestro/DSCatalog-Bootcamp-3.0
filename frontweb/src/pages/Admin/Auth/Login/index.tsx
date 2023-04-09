@@ -1,9 +1,11 @@
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from 'react-hook-form';
-import { getAuthData, getTokenData, requestBackendLogin, saveAuthData } from 'util/request';
+import { requestBackendLogin } from 'util/requests';
 import { useContext, useState } from 'react';
 import { AuthContext } from 'AuthContext';
+import { saveAuthData } from 'util/storage';
+import { getTokenData } from 'util/auth';
 
 import './styles.css';
 
@@ -13,16 +15,15 @@ type FormData = {
 };
 
 type LocationState = {
-  from : string;
-}
+  from: string;
+};
 
 const Login = () => {
-
   const location = useLocation<LocationState>();
 
-  const { from } = location.state || { from : {pathname : '/admin'} }
+  const { from } = location.state || { from: { pathname: '/admin' } };
 
-  const { setAuthContextData } =  useContext(AuthContext);
+  const { setAuthContextData } = useContext(AuthContext);
 
   const [hasError, setHasError] = useState(false);
 
@@ -32,7 +33,7 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  // history = redirecionamento de rotas programaticamente, 
+  // history = redirecionamento de rotas programaticamente,
   //após fazer login, você redireciona o usuario para alguma pagina (rota).
   const history = useHistory();
 
@@ -40,12 +41,12 @@ const Login = () => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
-        const token = getAuthData().access_token;
-        console.log('TOKEN GERADO' + token);
         setHasError(false);
-        console.log('SUCESSO', response);
-        setAuthContextData({ autenticaded: true, tokenData: getTokenData() })
-        history.replace(from)
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        });
+        history.replace(from);
       })
       .catch((error) => {
         setHasError(true);
@@ -56,15 +57,11 @@ const Login = () => {
   return (
     <div className="base-card login-card">
       <h1>LOGIN</h1>
-
       {hasError && (
-        <div className="alert alert-danger">
-          Erro ao tentar efetuar o login.
-        </div>
+        <div className="alert alert-danger">Erro ao tentar efetuar o login</div>
       )}
-
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-floating mb-4">
+        <div className="mb-4">
           <input
             {...register('username', {
               required: 'Campo obrigatório',
@@ -80,13 +77,11 @@ const Login = () => {
             placeholder="Email"
             name="username"
           />
-          <label>Email</label>
           <div className="invalid-feedback d-block">
             {errors.username?.message}
           </div>
         </div>
-
-        <div className="form-floating mb-2">
+        <div className="mb-2">
           <input
             {...register('password', {
               required: 'Campo obrigatório',
@@ -98,12 +93,10 @@ const Login = () => {
             placeholder="Password"
             name="password"
           />
-          <label>Password</label>
           <div className="invalid-feedback d-block">
             {errors.password?.message}
           </div>
         </div>
-
         <Link to="/admin/auth/recover" className="login-link-recover">
           Esqueci a senha
         </Link>

@@ -12,7 +12,6 @@
   width: 100%;
 }
 
-/* BREAKPOINTS */
 @media (min-width: 576px) {
   .auth-form-container {
     width: 480px;
@@ -29,6 +28,7 @@
   .auth-container {
     padding: 40px;
   }
+
   .auth-banner-container {
     display: flex;
     flex-direction: column;
@@ -42,7 +42,6 @@
     color: #263238;
     margin-bottom: 15px;
   }
-
   .auth-banner-container p {
     font-size: 18px;
     letter-spacing: -0.015em;

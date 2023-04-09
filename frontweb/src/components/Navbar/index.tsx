@@ -1,39 +1,36 @@
 import './styles.css';
 import 'bootstrap/js/src/collapse.js';
-import { Link, NavLink } from 'react-router-dom';
-import {
-  getTokenData,
-  isAutenticaded,
-  removeAuthData,
-} from 'util/request';
-import { useContext, useEffect } from 'react';
-import history from 'util/history';
-import { AuthContext } from 'AuthContext';
 
+import { Link, NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import history from 'util/history';
+import { useContext } from 'react';
+import { AuthContext } from 'AuthContext';
+import { getTokenData, isAuthenticated } from 'util/auth';
+import { removeAuthData } from 'util/storage';
 
 const Navbar = () => {
 
-  const { authContextData, setAuthContextData } =  useContext(AuthContext);
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   useEffect(() => {
-    if (isAutenticaded()) {
+    if (isAuthenticated()) {
       setAuthContextData({
-        autenticaded: true,
+        authenticated: true,
         tokenData: getTokenData(),
       });
     } else {
       setAuthContextData({
-        autenticaded: false,
+        authenticated: false,
       });
     }
   }, [setAuthContextData]);
 
-  // Função para efetuar o logout de usuario.
   const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     removeAuthData();
     setAuthContextData({
-      autenticaded: false,
+      authenticated: false,
     });
     history.replace('/');
   };
@@ -55,7 +52,6 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="collapse navbar-collapse" id="dscatalog-navbar">
           <ul className="navbar-nav offset-md-2 main-menu">
             <li>
@@ -65,7 +61,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/products" activeClassName="active">
-                CATALOGO
+                CATÁLOGO
               </NavLink>
             </li>
             <li>
@@ -76,18 +72,21 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className='nav-login-logout'>
-          {authContextData.autenticaded ? (
+        <div className="nav-login-logout">
+          {authContextData.authenticated ? (
             <>
-              <span className='nav-username'>{authContextData.tokenData?.user_name}</span>
-              <Link to="#logout" onClick={handleLogoutClick}> Logout </Link>
+              <span className="nav-username">{authContextData.tokenData?.user_name}</span>
+              <a href="#logout" onClick={handleLogoutClick}>
+                LOGOUT
+              </a>
             </>
           ) : (
-            <Link to="/admin/auth">Login</Link>
+            <Link to="/admin/auth">LOGIN</Link>
           )}
         </div>
       </div>
     </nav>
   );
 };
+
 export default Navbar;

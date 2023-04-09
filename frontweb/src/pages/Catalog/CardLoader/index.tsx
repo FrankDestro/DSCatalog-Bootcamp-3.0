@@ -4,13 +4,13 @@ const CardLoader = () => (
   <div className="card-loader-container">
     <ContentLoader
       speed={2}
-      width={300}
-      height={300}
-      viewBox="0 0 300 300"
-      backgroundColor="#ffffff"
-      foregroundColor="#ecebeb"
+      width={320}
+      height={460}
+      viewBox="0 0 320 460"
+      backgroundColor="#ecebeb"
+      foregroundColor="#d6d2d2"
     >
-      <rect x="-14" y="9" rx="2" ry="2" width="400" height="400" />
+      <rect x="0" y="0" rx="2" ry="2" width="300" height="300" />
     </ContentLoader>
   </div>
 );
